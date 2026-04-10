@@ -19,20 +19,19 @@ resource "google_compute_instance" "vm" {
 
   metadata_startup_script = <<-EOT
     #!/bin/bash
-    apt-get update -y
-    apt-get install -y git
-    apt-get install -y git nginx
+    sudo apt-get update -y
+    sudo apt-get install -y git
+    sudo apt-get install -y git nginx
 
-    systemctl enable nginx
-    systemctl start nginx
+    sudo systemctl enable nginx
+    sudo systemctl start nginx
 
-    echo "🔥 SEIR LAB VM is running" > /var/www/html/index.html
 
     cd /tmp
-    git clone https://github.com/BalericaAI/SEIR-1.git
+    sudo git clone https://github.com/BalericaAI/SEIR-1.git
 
-    chmod +x /tmp/SEIR-1/weekly_lessons/weeka/userscripts/supera.sh
-    bash /tmp/SEIR-1/weekly_lessons/weeka/userscripts/supera.sh
+    sud0 chmod +x /tmp/SEIR-1/weekly_lessons/weeka/userscripts/supera.sh
+    sudo bash /tmp/SEIR-1/weekly_lessons/weeka/userscripts/supera.sh
   EOT
 
   tags = ["ssh", "http"]
